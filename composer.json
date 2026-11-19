@@ -1,0 +1,31 @@
+{
+  "name": "devguard/devguard-laravel",
+  "description": "DevGuard Anti-Theft, Domain Allowlisting, and Milestone Autolock Middleware for Laravel",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "DevGuard Security Team",
+      "homepage": "https://devguard.uk"
+    }
+  ],
+  "require": {
+    "php": ">=7.4 || >=8.0",
+    "devguard/php-guard": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "DevGuard\\Laravel\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "DevGuard\\Laravel\\DevGuardServiceProvider"
+      ],
+      "aliases": {
+        "DevGuard": "DevGuard\\Laravel\\Facades\\DevGuard"
+      }
+    }
+  }
+}
