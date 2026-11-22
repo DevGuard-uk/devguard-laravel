@@ -79,10 +79,14 @@ class DevGuardMiddleware
         if ($guard === null) {
             $cfg = function_exists('config') ? config('devguard', []) : [];
             $failSafeVal = $cfg['fail_safe'] ?? 'open';
+            $authKey = !empty($cfg['sdk_key'])
+                ? (string) $cfg['sdk_key']
+                : (!empty($cfg['api_key']) ? (string) $cfg['api_key'] : null);
             $guard = new WebGuard([
                 'projectId' => (string) ($cfg['project_id'] ?? ''),
                 'apiUrl' => (string) ($cfg['api_url'] ?? 'https://api.devguard.uk'),
-                'apiKey' => !empty($cfg['api_key']) ? (string) $cfg['api_key'] : null,
+                'sdkKey' => !empty($cfg['sdk_key']) ? (string) $cfg['sdk_key'] : null,
+                'apiKey' => $authKey,
                 'failSafe' => ($failSafeVal === false || $failSafeVal === 'closed') ? 'closed' : 'open',
                 'allowedDomains' => $cfg['allowed_domains'] ?? null,
                 'allowedPaths' => (array) ($cfg['allowed_paths'] ?? []),

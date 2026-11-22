@@ -35,7 +35,8 @@ Add the following environment variables to your `.env` file:
 DEVGUARD_ENABLED=true
 DEVGUARD_PROJECT_ID=your_project_id_here
 DEVGUARD_API_URL=https://api.devguard.uk
-DEVGUARD_API_KEY=your_optional_api_key
+# Prefer project SDK key (Portal → Project SDK key). Falls back to DEVGUARD_API_KEY.
+DEVGUARD_SDK_KEY=your_project_sdk_key
 DEVGUARD_ALLOWED_DOMAINS=example.com,*.example.com
 DEVGUARD_FAIL_SAFE=open
 DEVGUARD_CACHE_TTL=300

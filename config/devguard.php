@@ -35,10 +35,21 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | DevGuard API Key (Optional)
+    | DevGuard Project SDK Key (Preferred)
     |--------------------------------------------------------------------------
     |
-    | API Key used for authenticated status queries and secured telemetry.
+    | Per-project ingest key (dg_sdk_*). Prefer over Master Secret / API key.
+    | Env: DEVGUARD_SDK_KEY. Falls back to api_key / DEVGUARD_API_KEY.
+    |
+    */
+    'sdk_key' => env('DEVGUARD_SDK_KEY', null),
+
+    /*
+    |--------------------------------------------------------------------------
+    | DevGuard API Key (Optional legacy fallback)
+    |--------------------------------------------------------------------------
+    |
+    | Legacy API Key / Master Secret used when sdk_key is unset.
     |
     */
     'api_key' => env('DEVGUARD_API_KEY', null),

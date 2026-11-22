@@ -36,10 +36,15 @@ class DevGuardServiceProvider extends ServiceProvider
             $failSafeVal = $config['fail_safe'] ?? 'open';
             $failSafe = ($failSafeVal === false || $failSafeVal === 'closed') ? 'closed' : 'open';
 
+            $authKey = !empty($config['sdk_key'])
+                ? (string) $config['sdk_key']
+                : (!empty($config['api_key']) ? (string) $config['api_key'] : null);
+
             return new WebGuard([
                 'projectId' => (string) ($config['project_id'] ?? ''),
                 'apiUrl' => (string) ($config['api_url'] ?? 'https://api.devguard.uk'),
-                'apiKey' => !empty($config['api_key']) ? (string) $config['api_key'] : null,
+                'sdkKey' => !empty($config['sdk_key']) ? (string) $config['sdk_key'] : null,
+                'apiKey' => $authKey,
                 'failSafe' => $failSafe,
                 'allowedDomains' => $config['allowed_domains'] ?? null,
                 'allowedPaths' => (array) ($config['allowed_paths'] ?? []),
